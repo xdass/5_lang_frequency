@@ -23,7 +23,10 @@ if __name__ == '__main__':
         if text:
             common_words = get_most_frequent_words(text)
             for common_word, count in common_words:
-                print('Слово "{}" в тексте встречается {} раз'.format(common_word, count))
+                print('Слово "{common_word}" в тексте встречается {count} раз'.format(
+                    common_word=common_word,
+                    count=count)
+                )
         else:
             print('Файл не найден')
     else:
