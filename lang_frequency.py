@@ -13,18 +13,17 @@ def load_data(filepath):
 
 
 def get_most_frequent_words(raw_text, words_count=10):
-    words_pattern = re.compile(r'[^\W_+]+')
-    separated_words = re.findall(words_pattern, raw_text)
-    return Counter(list(word for word in separated_words)).most_common(words_count)
+    separated_words = re.findall(r'[^\W_+]+', raw_text)
+    return Counter(separated_words).most_common(words_count)
 
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         text = load_data(sys.argv[1])
-        if text is not None:
+        if text:
             common_words = get_most_frequent_words(text)
             for common_word, count in common_words:
-                print('Слово "{}" в тексте встречается {} раз{}'.format(common_word, count, 'а' if count % 2 == 0 else ''))
+                print('Слово "{}" в тексте встречается {} раз'.format(common_word, count))
         else:
             print('Файл не найден')
     else:
